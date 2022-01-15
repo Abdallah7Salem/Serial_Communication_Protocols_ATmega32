@@ -1,0 +1,266 @@
+
+SPI_Basic_Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000178  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000001ec  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000012  00800060  00800060  000001ec  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000001ec  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000021c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000078  00000000  00000000  00000258  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000995  00000000  00000000  000002d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000638  00000000  00000000  00000c65  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000510  00000000  00000000  0000129d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001b8  00000000  00000000  000017b0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000007d5  00000000  00000000  00001968  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000004e0  00000000  00000000  0000213d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000058  00000000  00000000  0000261d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__vector_13>
+  38:	0c 94 91 00 	jmp	0x122	; 0x122 <__vector_14>
+  3c:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__vector_15>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a2 37       	cpi	r26, 0x72	; 114
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 3e 00 	call	0x7c	; 0x7c <main>
+  74:	0c 94 ba 00 	jmp	0x174	; 0x174 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <main>:
+
+#include <avr/io.h>
+
+
+int main(void)
+{
+  7c:	ff cf       	rjmp	.-2      	; 0x7c <main>
+
+0000007e <__vector_13>:
+
+// _VECTOR(Vector No.) ; And You get the Vector No. From The Datasheet || USART_RXC_VECT
+// 14 in Datasheet means 13 
+// Inside the Function We will write the Code of the Interrupt of RXC
+ISR(USART_RXC_vect)		// _VECTOR(13)
+{
+  7e:	1f 92       	push	r1
+  80:	0f 92       	push	r0
+  82:	0f b6       	in	r0, 0x3f	; 63
+  84:	0f 92       	push	r0
+  86:	11 24       	eor	r1, r1
+  88:	2f 93       	push	r18
+  8a:	3f 93       	push	r19
+  8c:	4f 93       	push	r20
+  8e:	5f 93       	push	r21
+  90:	6f 93       	push	r22
+  92:	7f 93       	push	r23
+  94:	8f 93       	push	r24
+  96:	9f 93       	push	r25
+  98:	af 93       	push	r26
+  9a:	bf 93       	push	r27
+  9c:	ef 93       	push	r30
+  9e:	ff 93       	push	r31
+	// UART0 has a Pointer to Function Member 
+	// Call The Pointed Function from that Pointer
+	// Notice : The User Determines Which Function The Pointer Points At.
+	
+	if (UART0.RXC_InterruptCall != NULL_PTR)
+  a0:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <_edata+0xc>
+  a4:	f0 91 6d 00 	lds	r31, 0x006D	; 0x80006d <_edata+0xd>
+  a8:	30 97       	sbiw	r30, 0x00	; 0
+  aa:	09 f0       	breq	.+2      	; 0xae <__vector_13+0x30>
+	{
+		UART0.RXC_InterruptCall();
+  ac:	09 95       	icall
+	}
+	else								// In case of the User doesn't Determine The Function Pointed At.
+	{
+		// Handle Error Using Error Handling Function
+	}
+}
+  ae:	ff 91       	pop	r31
+  b0:	ef 91       	pop	r30
+  b2:	bf 91       	pop	r27
+  b4:	af 91       	pop	r26
+  b6:	9f 91       	pop	r25
+  b8:	8f 91       	pop	r24
+  ba:	7f 91       	pop	r23
+  bc:	6f 91       	pop	r22
+  be:	5f 91       	pop	r21
+  c0:	4f 91       	pop	r20
+  c2:	3f 91       	pop	r19
+  c4:	2f 91       	pop	r18
+  c6:	0f 90       	pop	r0
+  c8:	0f be       	out	0x3f, r0	; 63
+  ca:	0f 90       	pop	r0
+  cc:	1f 90       	pop	r1
+  ce:	18 95       	reti
+
+000000d0 <__vector_15>:
+
+// TXC Interrupt Service Routine
+ISR(USART_TXC_vect)
+{
+  d0:	1f 92       	push	r1
+  d2:	0f 92       	push	r0
+  d4:	0f b6       	in	r0, 0x3f	; 63
+  d6:	0f 92       	push	r0
+  d8:	11 24       	eor	r1, r1
+  da:	2f 93       	push	r18
+  dc:	3f 93       	push	r19
+  de:	4f 93       	push	r20
+  e0:	5f 93       	push	r21
+  e2:	6f 93       	push	r22
+  e4:	7f 93       	push	r23
+  e6:	8f 93       	push	r24
+  e8:	9f 93       	push	r25
+  ea:	af 93       	push	r26
+  ec:	bf 93       	push	r27
+  ee:	ef 93       	push	r30
+  f0:	ff 93       	push	r31
+	if (UART0.TXC_InterruptCall != NULL_PTR)
+  f2:	e0 91 6e 00 	lds	r30, 0x006E	; 0x80006e <_edata+0xe>
+  f6:	f0 91 6f 00 	lds	r31, 0x006F	; 0x80006f <_edata+0xf>
+  fa:	30 97       	sbiw	r30, 0x00	; 0
+  fc:	09 f0       	breq	.+2      	; 0x100 <__vector_15+0x30>
+	{
+		UART0.TXC_InterruptCall();
+  fe:	09 95       	icall
+	}
+	else
+	{
+		// Handle Error Using Error Handling Function
+	}
+}
+ 100:	ff 91       	pop	r31
+ 102:	ef 91       	pop	r30
+ 104:	bf 91       	pop	r27
+ 106:	af 91       	pop	r26
+ 108:	9f 91       	pop	r25
+ 10a:	8f 91       	pop	r24
+ 10c:	7f 91       	pop	r23
+ 10e:	6f 91       	pop	r22
+ 110:	5f 91       	pop	r21
+ 112:	4f 91       	pop	r20
+ 114:	3f 91       	pop	r19
+ 116:	2f 91       	pop	r18
+ 118:	0f 90       	pop	r0
+ 11a:	0f be       	out	0x3f, r0	; 63
+ 11c:	0f 90       	pop	r0
+ 11e:	1f 90       	pop	r1
+ 120:	18 95       	reti
+
+00000122 <__vector_14>:
+
+// UDRE Interrupt Service Routine
+ISR(USART_UDRE_vect)
+{
+ 122:	1f 92       	push	r1
+ 124:	0f 92       	push	r0
+ 126:	0f b6       	in	r0, 0x3f	; 63
+ 128:	0f 92       	push	r0
+ 12a:	11 24       	eor	r1, r1
+ 12c:	2f 93       	push	r18
+ 12e:	3f 93       	push	r19
+ 130:	4f 93       	push	r20
+ 132:	5f 93       	push	r21
+ 134:	6f 93       	push	r22
+ 136:	7f 93       	push	r23
+ 138:	8f 93       	push	r24
+ 13a:	9f 93       	push	r25
+ 13c:	af 93       	push	r26
+ 13e:	bf 93       	push	r27
+ 140:	ef 93       	push	r30
+ 142:	ff 93       	push	r31
+	if (UART0.UDRE_InterruptCall != NULL_PTR)
+ 144:	e0 91 70 00 	lds	r30, 0x0070	; 0x800070 <_edata+0x10>
+ 148:	f0 91 71 00 	lds	r31, 0x0071	; 0x800071 <_edata+0x11>
+ 14c:	30 97       	sbiw	r30, 0x00	; 0
+ 14e:	09 f0       	breq	.+2      	; 0x152 <__vector_14+0x30>
+	{
+		UART0.UDRE_InterruptCall();
+ 150:	09 95       	icall
+	}
+	else
+	{
+		// Handle Error Using Error Handling Function
+	}
+}
+ 152:	ff 91       	pop	r31
+ 154:	ef 91       	pop	r30
+ 156:	bf 91       	pop	r27
+ 158:	af 91       	pop	r26
+ 15a:	9f 91       	pop	r25
+ 15c:	8f 91       	pop	r24
+ 15e:	7f 91       	pop	r23
+ 160:	6f 91       	pop	r22
+ 162:	5f 91       	pop	r21
+ 164:	4f 91       	pop	r20
+ 166:	3f 91       	pop	r19
+ 168:	2f 91       	pop	r18
+ 16a:	0f 90       	pop	r0
+ 16c:	0f be       	out	0x3f, r0	; 63
+ 16e:	0f 90       	pop	r0
+ 170:	1f 90       	pop	r1
+ 172:	18 95       	reti
+
+00000174 <_exit>:
+ 174:	f8 94       	cli
+
+00000176 <__stop_program>:
+ 176:	ff cf       	rjmp	.-2      	; 0x176 <__stop_program>
