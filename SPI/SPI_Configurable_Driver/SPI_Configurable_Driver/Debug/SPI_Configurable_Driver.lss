@@ -1,0 +1,150 @@
+
+SPI_Configurable_Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000d4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000148  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  00800060  00800060  00000148  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000148  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000178  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000058  00000000  00000000  000001b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000081c  00000000  00000000  0000020c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000005d5  00000000  00000000  00000a28  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000035a  00000000  00000000  00000ffd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000c0  00000000  00000000  00001358  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005d7  00000000  00000000  00001418  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000109  00000000  00000000  000019ef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  00001af8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__vector_12>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a9 36       	cpi	r26, 0x69	; 105
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 3e 00 	call	0x7c	; 0x7c <main>
+  74:	0c 94 68 00 	jmp	0xd0	; 0xd0 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <main>:
+
+#include <avr/io.h>
+
+
+int main(void)
+{
+  7c:	ff cf       	rjmp	.-2      	; 0x7c <main>
+
+0000007e <__vector_12>:
+#include "ATmega32A_SPI.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
+ISR(SPI_STC_vect)
+{
+  7e:	1f 92       	push	r1
+  80:	0f 92       	push	r0
+  82:	0f b6       	in	r0, 0x3f	; 63
+  84:	0f 92       	push	r0
+  86:	11 24       	eor	r1, r1
+  88:	2f 93       	push	r18
+  8a:	3f 93       	push	r19
+  8c:	4f 93       	push	r20
+  8e:	5f 93       	push	r21
+  90:	6f 93       	push	r22
+  92:	7f 93       	push	r23
+  94:	8f 93       	push	r24
+  96:	9f 93       	push	r25
+  98:	af 93       	push	r26
+  9a:	bf 93       	push	r27
+  9c:	ef 93       	push	r30
+  9e:	ff 93       	push	r31
+	if (SPI0.SPI_Transfer_Interrupt_Call != NULL_PTR)
+  a0:	e0 91 65 00 	lds	r30, 0x0065	; 0x800065 <__DATA_REGION_ORIGIN__+0x5>
+  a4:	f0 91 66 00 	lds	r31, 0x0066	; 0x800066 <__DATA_REGION_ORIGIN__+0x6>
+  a8:	30 97       	sbiw	r30, 0x00	; 0
+  aa:	09 f0       	breq	.+2      	; 0xae <__vector_12+0x30>
+	{
+		SPI0.SPI_Transfer_Interrupt_Call();
+  ac:	09 95       	icall
+	}
+}
+  ae:	ff 91       	pop	r31
+  b0:	ef 91       	pop	r30
+  b2:	bf 91       	pop	r27
+  b4:	af 91       	pop	r26
+  b6:	9f 91       	pop	r25
+  b8:	8f 91       	pop	r24
+  ba:	7f 91       	pop	r23
+  bc:	6f 91       	pop	r22
+  be:	5f 91       	pop	r21
+  c0:	4f 91       	pop	r20
+  c2:	3f 91       	pop	r19
+  c4:	2f 91       	pop	r18
+  c6:	0f 90       	pop	r0
+  c8:	0f be       	out	0x3f, r0	; 63
+  ca:	0f 90       	pop	r0
+  cc:	1f 90       	pop	r1
+  ce:	18 95       	reti
+
+000000d0 <_exit>:
+  d0:	f8 94       	cli
+
+000000d2 <__stop_program>:
+  d2:	ff cf       	rjmp	.-2      	; 0xd2 <__stop_program>
