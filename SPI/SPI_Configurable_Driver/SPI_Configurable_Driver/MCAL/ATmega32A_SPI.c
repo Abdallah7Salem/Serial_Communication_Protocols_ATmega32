@@ -123,7 +123,7 @@ ISR(SPI_STC_vect)
 		}
 		
 		/* Block till The End of Transmission */
-		while ( (SPDR & (1<<SPIF)) == 0 ) {}
+		while ( (SPSR & (1<<SPIF)) == 0 ) {}
 			
 		/* return Rx Data from SPR */	
 		return SPDR;
